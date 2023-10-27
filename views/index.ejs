@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="./styles/style.css" type='text/css'>
+    
+  </head>
+  <body>
+    <%if(locals.items){%>
+     <div class='<%=items.length<7?"container":"container-over"%>'>
+    <div class='header'>
+      <h2>Todays Tasks</h2>
+    </div>
+    <div class='center'>
+      <ul>
+        
+          <%items.forEach((item)=>{%>
+            <li>
+              <form action='/deleteTask' method="POST">
+              <div class='listItem'>
+              <input type='checkbox' name='item' onChange='this.form.submit()'/>
+              <p><%=item.name%></p>
+                </div>
+                <input type='hidden' name='id' value='<%=item.id%>'/>
+                </form>
+            </li>
+          <%})}%>
+        </ul>
+     <form method='POST' action='/addTask'>
+         <div class='add_item'>
+        <input id='textBox' placeholder='Add Task...' type='text' name='newItem' required/>
+           <button type='submit' id='btn'>+</button>
+          </div>
+      </form>
+      </div>
+            <p id='footer'>Copyright &copy; 2023</p>
+  </div>
+    </body>
+</html>
