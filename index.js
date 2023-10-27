@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
-const con = mongoose.connect('mongodb+srv://piyush9131:bny2815@cluster0.mfmd7gv.mongodb.net/todolistDb?retryWrites=true&w=majority', {
+const con = mongoose.connect('mongodb+srv://piyush9131:piyush9131@cluster0.mfmd7gv.mongodb.net/todolistDb?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
 
 
 app.post('/addTask', (req, res) => {
-  
+
   const task = new Item({
     name: req.body.newItem
   })
@@ -42,9 +42,9 @@ app.post('/addTask', (req, res) => {
 
 
 app.post('/deleteTask', async (req, res) => {
-  
-  const o = await Item.deleteOne({ _id: req.body.id})
- 
+
+  const o = await Item.deleteOne({ _id: req.body.id })
+
   res.redirect('/')
 })
 
